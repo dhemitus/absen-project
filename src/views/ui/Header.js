@@ -1,12 +1,12 @@
 import React from 'react';
 import { withNavigation } from '@react-navigation/compat';
 import { TouchableOpacity, StyleSheet, Platform, Dimensions } from 'react-native';
-import { Button, Block, NavBar, Text, theme } from 'galio-framework';
+import { Button, Block, NavBar, Text, theme, Icon } from 'galio-framework';
 
-import Icon from './Icon';
 import Input from './Input';
 import Tabs from './Tabs';
-import argonTheme from '../constants/Theme';
+//import { argonTheme } from '../constants';
+import { Themes } from '../../constants'
 
 const { height, width } = Dimensions.get('window');
 const iPhoneX = () => Platform.OS === 'ios' && (height === 812 || width === 812 || height === 896 || width === 896);
@@ -17,7 +17,7 @@ const BellButton = ({isWhite, style, navigation}) => (
       family="ArgonExtra"
       size={16}
       name="bell"
-      color={argonTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
+      color={Themes.COLORS[isWhite ? 'WHITE' : 'ICON']}
     />
     <Block middle style={styles.notify} />
   </TouchableOpacity>
@@ -29,7 +29,7 @@ const BasketButton = ({isWhite, style, navigation}) => (
       family="ArgonExtra"
       size={16}
       name="basket"
-      color={argonTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
+      color={Themes.COLORS[isWhite ? 'WHITE' : 'ICON']}
     />
   </TouchableOpacity>
 );
@@ -126,13 +126,13 @@ class Header extends React.Component {
       <Block row style={styles.options}>
         <Button shadowless style={[styles.tab, styles.divider]} onPress={() => navigation.navigate('Pro')}>
           <Block row middle>
-            <Icon name="diamond" family="ArgonExtra" style={{ paddingRight: 8 }} color={argonTheme.COLORS.ICON} />
+            <Icon name="diamond" family="ArgonExtra" style={{ paddingRight: 8 }} color={Themes.COLORS.ICON} />
             <Text size={16} style={styles.tabTitle}>{optionLeft || 'Beauty'}</Text>
           </Block>
         </Button>
         <Button shadowless style={styles.tab} onPress={() => navigation.navigate('Pro')}>
           <Block row middle>
-            <Icon size={16} name="bag-17" family="ArgonExtra" style={{ paddingRight: 8 }} color={argonTheme.COLORS.ICON}/>
+            <Icon size={16} name="bag-17" family="ArgonExtra" style={{ paddingRight: 8 }} color={Themes.COLORS.ICON}/>
             <Text size={16} style={styles.tabTitle}>{optionRight || 'Fashion'}</Text>
           </Block>
         </Button>
@@ -191,7 +191,7 @@ class Header extends React.Component {
             <Icon 
               name={back ? 'chevron-left' : "menu"} family="entypo" 
               size={20} onPress={this.handleLeftPress} 
-              color={iconColor || (white ? argonTheme.COLORS.WHITE : argonTheme.COLORS.ICON)}
+              color={iconColor || (white ? Themes.COLORS.WHITE : Themes.COLORS.ICON)}
               style={{ marginTop: 2 }}
             />
               
@@ -199,7 +199,7 @@ class Header extends React.Component {
           leftStyle={{ paddingVertical: 12, flex: 0.2 }}
           titleStyle={[
             styles.title,
-            { color: argonTheme.COLORS[white ? 'WHITE' : 'HEADER'] },
+            { color: Themes.COLORS[white ? 'WHITE' : 'HEADER'] },
             titleColor && { color: titleColor }
           ]}
           {...props}
@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   notify: {
-    backgroundColor: argonTheme.COLORS.LABEL,
+    backgroundColor: Themes.COLORS.LABEL,
     borderRadius: 4,
     height: theme.SIZES.BASE / 2,
     width: theme.SIZES.BASE / 2,
@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     borderWidth: 1,
     borderRadius: 3,
-    borderColor: argonTheme.COLORS.BORDER
+    borderColor: Themes.COLORS.BORDER
   },
   options: {
     marginBottom: 24,
@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
   tabTitle: {
     lineHeight: 19,
     fontWeight: '400',
-    color: argonTheme.COLORS.HEADER
+    color: Themes.COLORS.HEADER
   },
 });
 

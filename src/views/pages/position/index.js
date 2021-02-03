@@ -1,6 +1,5 @@
 import React from 'react';
-import {  Dimensions, View, Text, Image, TouchableOpacity } from 'react-native'
-import PropTypes from 'prop-types'
+import {  Dimensions, View } from 'react-native'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import styles from './styles'
 
