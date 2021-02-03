@@ -2,6 +2,7 @@
   package="com.absenproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
       android:name=".MainApplication"
@@ -10,6 +11,10 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
+      <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyBAefhRlXEH3vCko-zZTX6PHllTR6av4WI"/>
+      <uses-library android:name="org.apache.http.legacy" android:required="false"/>
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
@@ -25,3 +30,5 @@
     </application>
 
 </manifest>
+<!--AIzaSyBAefhRlXEH3vCko-zZTX6PHllTR6av4WI-->
+<!--AIzaSyBvLLzc05mymyOBp_pKnIe7NvMAKqa3FYA-->

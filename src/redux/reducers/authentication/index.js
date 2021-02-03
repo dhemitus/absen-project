@@ -1,8 +1,9 @@
-import { UNLOGGED_USER, LOGGED_USER } from './iauthentication'
+import { UNLOGGED_USER, LOGGED_USER, STILLLOGGED_USER } from './iauthentication'
 
 const initalState = {
   type: UNLOGGED_USER,
-  data: null
+  data: null,
+  error: null
 }
 
 export default function authenticationReducer (
@@ -13,9 +14,16 @@ export default function authenticationReducer (
     case LOGGED_USER:
       return {
         type: action.type,
-        data: action.payload.data
+        data: action.payload.data,
+        error: null
       }
-    default:
+      case STILLLOGGED_USER:
+        return {
+          type: action.type,
+          data: action.payload.data,
+          error: null
+        }
+      default:
       return state
   }
 }
