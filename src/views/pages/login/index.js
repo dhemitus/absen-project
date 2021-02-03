@@ -57,10 +57,10 @@ const LoginPage = (props) => {
 
             <Block center>
               <Button
-                style={styles.button}
-                color={Themes.COLORS.INFO}
+              color="success"
+              style={styles.button}
                 onPress={() => console.log('login')}
-                textStyle={{ color: Themes.COLORS.BLACK }}
+                textStyle={{ color: Themes.COLORS.WHITE }}
               >
                 login
               </Button>

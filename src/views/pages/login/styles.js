@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   logo: {
-    width: 200,
+    width: 230,
     height: 60,
     zIndex: 2,
     position: 'relative',
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     paddingTop: theme.SIZES.BASE * 2
   },
   button: {
-    width: width - theme.SIZES.BASE * 4,
+    width: width - theme.SIZES.BASE * 6,
     height: theme.SIZES.BASE * 3,
     shadowRadius: 0,
     shadowOpacity: 0
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   input: {
     borderColor: Themes.COLORS.INFO,
     borderRadius: 4,
-    backgroundColor: "#fff"
+//    backgroundColor: "#fff"
   }
 })
 
