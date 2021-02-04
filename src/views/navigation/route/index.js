@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
+import { Icon } from 'galio-framework'
 
 import { ActionCreators as action } from '../../../redux/actions'
-import { Header } from '../../ui'
 import LoginPage from '../../pages/login'
 import LogoutPage from '../../pages/logout'
 import ArchivesPage from '../../pages/archives'
@@ -18,7 +18,23 @@ const Tab = createBottomTabNavigator();
 
 HomePage = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let _iconname
+          if(route.name === 'home') {
+            _iconname = focused ? 'pin-3' : 'pin-3'
+          } else if(route.name === 'attendance') {
+            _iconname = focused ? 'pin-3' : 'pin-3'
+          } else if(route.name === 'archives') {
+            _iconname = focused ? 'pin-3' : 'pin-3'
+          } else if(route.name === 'logout') {
+            _iconname = focused ? 'pin-3' : 'pin-3'
+          }
+          return <Icon name={_iconname} family='Galio' size={size} color={color} />
+        }
+      })}
+    >
       <Tab.Screen name="attendance" component={AttendancePage} />
       <Tab.Screen name="archives" component={ArchivesPage} />
       <Tab.Screen name="logout" component={LogoutPage} />

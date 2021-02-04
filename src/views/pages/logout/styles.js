@@ -41,8 +41,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     zIndex: 2
   },
+  divider: {
+    width: "90%",
+    borderWidth: 1,
+    borderColor: "#E9ECEF"
+  },
   button: {
-    width: width - theme.SIZES.BASE * 8,
+//    width: width - theme.SIZES.BASE * 8,
     height: theme.SIZES.BASE * 3,
     shadowRadius: 0,
     shadowOpacity: 0

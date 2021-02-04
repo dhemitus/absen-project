@@ -1,26 +1,8 @@
-//import FormData from 'FormData'
-import axios from 'axios'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-
 import { LOGGED_USER, UNLOGGED_USER, STILLLOGGED_USER } from '../../reducers/authentication/iauthentication'
 import * as api from '../../../api'
 
 export const emailLogin = (email, password) => async dispatch => {
   try {
-    /*let _response = await axios({
-      method: 'post',
-      url:'https://apitest.kerjoo.com/api/v1/auth',
-      data:{
-        email,
-        password
-      },
-      headers:{
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': ''
-      },
-      responseType: 'json'
-    })*/
     let _response = await api.serverLogin(email, password)
     console.log(_response.data.access_token)
 
@@ -46,16 +28,6 @@ export const logoutUser = () => async dispatch => {
     let _token = await api.checkLocalUser()
 
     console.log(_token)
-    /*let _response = await axios({
-      method: 'post',
-      url:'https://apitest.kerjoo.com/api/v1/auth/logout',
-      headers:{
-        Accept: 'application/json',
-        'X-CSRF-TOKEN': 'Bearer ' + _token,
-        'Authorization': 'Bearer ' + _token
-      },
-      responseType: 'json'
-    })*/
     await api.serverLogout(_token)
 
     await api.removeLocalUser()
