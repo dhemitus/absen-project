@@ -7,16 +7,18 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Icon } from 'galio-framework'
 
 import { ActionCreators as action } from '../../../redux/actions'
+import { LOGGED_USER, STILLLOGGED_USER, UNLOGGED_USER } from '../../../redux/reducers/authentication/iauthentication'
 import LoginPage from '../../pages/login'
 import LogoutPage from '../../pages/logout'
 import ArchivesPage from '../../pages/archives'
 import AttendancePage from '../../pages/attendance'
 import PositionPage from '../../pages/position'
+import LoadingPage from '../../pages/loading'
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-HomePage = () => {
+const HomePage = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -42,8 +44,36 @@ HomePage = () => {
   )
 }
 
+const DisplayPage = (type) => {
+
+  if(type === LOGGED_USER || type === STILLLOGGED_USER) {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name="home" component={HomePage} 
+          options={{headerShown: false}}
+        />
+        <Stack.Screen name="position" component={PositionPage} 
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    )
+  } else if (type === UNLOGGED_USER) {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name="login" component={LoginPage}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    )
+  } else {
+    return (
+      <LoadingPage />
+    )
+  }
+}
+
 export default (props) => {
-  const { data } = useSelector((state) => state.userAuthentication)
+  const { data, type } = useSelector((state) => state.userAuthentication)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -52,26 +82,7 @@ export default (props) => {
 
   return(
     <>
-      {data !== '' && data !== undefined && data !== null ? 
-        (
-          <Stack.Navigator>
-            <Stack.Screen name="home" component={HomePage} 
-              options={{headerShown: false}}
-            />
-            <Stack.Screen name="position" component={PositionPage} 
-              options={{headerShown: false}}
-            />
-          </Stack.Navigator>
-          )
-        :
-        (
-          <Stack.Navigator>
-            <Stack.Screen name="login" component={LoginPage}
-              options={{headerShown: false}}
-            />
-          </Stack.Navigator>
-        )
-      }
+    { DisplayPage(type) }
     </>
   )
 }

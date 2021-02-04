@@ -8,6 +8,7 @@ import styles from './styles'
 import { Themes } from '../../../constants'
 import { Button, Input } from '../../ui'
 import { ActionCreators as action } from '../../../redux/actions'
+import { InButton, OutButton, BreakButton, AfterBreakButton, OverTimeInButton, OverTimeOutButton } from '../../components'
 
 const { height, width } = Dimensions.get("screen");
 const idlocal = require('moment/locale/id')
@@ -41,50 +42,23 @@ export default (props) => {
             </Block>
             <Block>
               <Text color={Themes.COLORS.PRIMARY} size={52}>
-                {/*date.toLocaleTimeString()*/}
                 {moment(date).format("LTS")}
               </Text>
             </Block>
           </Block>
         </Block>
         <Block row space="evenly">
-            <Block flex>
-              <Button small center color="default" style={styles.optionsButton}>
-                in
-              </Button>
-            </Block>
-
-            <Block flex>
-              <Button small center color="primary" style={styles.optionsButton}>
-                out
-              </Button>
-            </Block>
-          </Block>
-          <Block row space="evenly">
-            <Block flex>
-              <Button center color="info" style={styles.optionsButton}>
-                break
-              </Button>
-            </Block>
-
-            <Block flex>
-              <Button center color="success" style={styles.optionsButton}>
-                after break
-              </Button>
-            </Block>
-          </Block>
-          <Block row space="evenly">
-            <Block flex>
-              <Button small center color="warning" style={styles.optionsButton}>
-                overtime in
-              </Button>
-            </Block>
-            <Block flex>
-              <Button small center color="error" style={styles.optionsButton}>
-                overtime out
-              </Button>
-            </Block>
-          </Block>
+          <InButton date={date} />
+          <OutButton date={date} />
+        </Block>
+        <Block row space="evenly">
+          <BreakButton date={date} />
+          <AfterBreakButton date={date} />
+        </Block>
+        <Block row space="evenly">
+          <OverTimeInButton date={date} />
+          <OverTimeOutButton date={date} />
+        </Block>
       </Block>
     </Block>
   )

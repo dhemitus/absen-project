@@ -1,7 +1,7 @@
-import { UNLOGGED_USER, LOGGED_USER, STILLLOGGED_USER } from './iauthentication'
+import { UNLOGGED_USER, LOGGED_USER, STILLLOGGED_USER, BEFORELOG_USER } from './iauthentication'
 
 const initalState = {
-  type: UNLOGGED_USER,
+  type: BEFORELOG_USER,
   data: null,
   error: null
 }
