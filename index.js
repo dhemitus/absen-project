@@ -11,6 +11,7 @@ import {AppRegistry} from 'react-native'
 import {name as appName} from './app.json'
 import Position from './src/views/pages/position'
 import LoginPage from './src/views/pages/login'
+import RoutePage from './src/views/navigation/route'
 import { Themes } from './src/constants'
 
 function Init () {
@@ -19,7 +20,7 @@ function Init () {
       <NavigationContainer>
         <GalioProvider theme={Themes}>
           <Block flex>
-            <LoginPage />
+            <RoutePage />
           </Block>
         </GalioProvider>
       </NavigationContainer>

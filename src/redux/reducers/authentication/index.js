@@ -23,7 +23,13 @@ export default function authenticationReducer (
           data: action.data,
           error: null
         }
-      default:
+        case UNLOGGED_USER:
+          return {
+            type: action.type,
+            data: null,
+            error: null
+          }
+        default:
       return state
   }
 }

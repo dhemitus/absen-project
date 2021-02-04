@@ -39,6 +39,32 @@ export const emailLogin = (email, password) => async dispatch => {
   }
 }
 
+export const logoutUser = () => async dispatch => {
+  try {
+    let _token = await AsyncStorage.getItem('TOKEN')
+
+    console.log(_token)
+    let _response = await axios({
+      method: 'post',
+      url:'https://apitest.kerjoo.com/api/v1/auth/logout',
+      headers:{
+        Accept: 'application/json',
+        'X-CSRF-TOKEN': 'Bearer ' + _token,
+        'Authorization': 'Bearer ' + _token
+      },
+      responseType: 'json'
+    })
+
+    await AsyncStorage.removeItem('TOKEN')
+
+    dispatch({
+      type: UNLOGGED_USER,
+      data: null
+    })
+  } catch(e) {
+    console.log(e)
+  }
+}
 export const checkUser = () => async dispatch => {
   try {
 
