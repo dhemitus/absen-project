@@ -14,13 +14,13 @@ export default function authenticationReducer (
     case LOGGED_USER:
       return {
         type: action.type,
-        data: action.payload.data,
+        data: action.data,
         error: null
       }
       case STILLLOGGED_USER:
         return {
           type: action.type,
-          data: action.payload.data,
+          data: action.data,
           error: null
         }
       default:

@@ -1,29 +1,29 @@
-import FormData from 'FormData'
+//import FormData from 'FormData'
+import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { LOGGED_USER, UNLOGGED_USER, STILLLOGGED_USER } from '../../reducers/authentication/iauthentication'
 
 export const emailLogin = (email, password) => async dispatch => {
-  let _data = FormData()
-  _data.append(email)
-  _data.append(password)
   try {
-    let _response = await fetch(
-      'https://apitest.kerjoo.com/api/v1/auth',
-      {
-        method: 'POST'
+    let _response = await axios({
+      method: 'post',
+      url:'https://apitest.kerjoo.com/api/v1/auth',
+      data:{
+        email,
+        password
       },
-      {
-        headers: {
-          'accept': 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'X-CSRF-TOKEN': ''
-        },
-        body: _data
+      headers:{
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': ''
       },
-    )
+      responseType: 'json'
+    })
+    console.log(_response.data.access_token)
 
-    let _result = await _response.json()
+    let _result = (_response.data)
+    console.log(_result)
 
     await AsyncStorage.setItem('TOKEN', _result.access_token)
 

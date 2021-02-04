@@ -16,6 +16,8 @@
     "@react-navigation/compat": "^5.3.13",
     "@react-navigation/native": "^5.9.2",
     "FormData": "^0.10.1",
+    "axios": "^0.21.1",
+    "fs": "^0.0.1-security",
     "galio-framework": "^0.7.1",
     "moment": "^2.29.1",
     "prop-types": "^15.7.2",

@@ -1,14 +1,20 @@
 import React from 'react'
 import { ImageBackground, Image, Dimensions } from 'react-native'
 import { Block, Text} from 'galio-framework'
+import { useSelector, useDispatch } from 'react-redux'
 
 import styles from './styles'
 import { Themes } from '../../../constants'
 import { Button, Input } from '../../ui'
+import { ActionCreators as action } from '../../../redux/actions'
 
 const { height, width } = Dimensions.get("screen");
 
-const LoginPage = (props) => {
+export default (props) => {
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
+  const dispatch = useDispatch()
+
   return (
     <Block flex style={styles.container}>
       <Block flex center>
@@ -39,6 +45,8 @@ const LoginPage = (props) => {
           <Block flex style={styles.group}>
             <Block style={styles.inputcontainer}>
               <Input
+                value={email}
+                onChangeText={setEmail}
                 right
                 placeholder="e-mail"
                 style={styles.input}
@@ -47,6 +55,8 @@ const LoginPage = (props) => {
             </Block>
             <Block style={styles.inputcontainer}>
               <Input
+                value={password}
+                onChangeText={setPassword}
                 right
                 password={true}
                 placeholder="password"
@@ -59,7 +69,7 @@ const LoginPage = (props) => {
               <Button
               color="success"
               style={styles.button}
-                onPress={() => console.log('login')}
+                onPress={() => dispatch(action.emailLogin(email, password))}
                 textStyle={{ color: Themes.COLORS.WHITE }}
               >
                 login
@@ -72,4 +82,3 @@ const LoginPage = (props) => {
     </Block>
   )
 }
-export default LoginPage
