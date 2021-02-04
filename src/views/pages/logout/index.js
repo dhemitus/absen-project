@@ -23,15 +23,18 @@ export default (props) => {
       </Block>
       <Block flex space="between" style={styles.padded}>
         <Block flex space="around" style={{ zIndex: 2 }}>
-          <Block center>
-            <Button
-            color="warning"
-            style={styles.button}
-              onPress={() => dispatch(action.logoutUser())}
-              textStyle={{ color: Themes.COLORS.WHITE }}
-            >
-              logout
-            </Button>            
+          <Block flex style={styles.profileCard}>
+            <Block center>
+              <Button
+              color="warning"
+              style={styles.button}
+                onPress={() => dispatch(action.logoutUser())}
+                textStyle={{ color: Themes.COLORS.WHITE }}
+              >
+                logout
+              </Button>            
+            </Block>
+
           </Block>
         </Block>
       </Block>

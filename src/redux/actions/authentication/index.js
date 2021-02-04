@@ -3,10 +3,11 @@ import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { LOGGED_USER, UNLOGGED_USER, STILLLOGGED_USER } from '../../reducers/authentication/iauthentication'
+import * as api from '../../../api'
 
 export const emailLogin = (email, password) => async dispatch => {
   try {
-    let _response = await axios({
+    /*let _response = await axios({
       method: 'post',
       url:'https://apitest.kerjoo.com/api/v1/auth',
       data:{
@@ -19,13 +20,14 @@ export const emailLogin = (email, password) => async dispatch => {
         'X-CSRF-TOKEN': ''
       },
       responseType: 'json'
-    })
+    })*/
+    let _response = await api.serverLogin(email, password)
     console.log(_response.data.access_token)
 
     let _result = (_response.data)
     console.log(_result)
 
-    await AsyncStorage.setItem('TOKEN', _result.access_token)
+    await api.addLocalUser(_result.access_token)
 
     dispatch({
       type: LOGGED_USER,
@@ -41,10 +43,10 @@ export const emailLogin = (email, password) => async dispatch => {
 
 export const logoutUser = () => async dispatch => {
   try {
-    let _token = await AsyncStorage.getItem('TOKEN')
+    let _token = await api.checkLocalUser()
 
     console.log(_token)
-    let _response = await axios({
+    /*let _response = await axios({
       method: 'post',
       url:'https://apitest.kerjoo.com/api/v1/auth/logout',
       headers:{
@@ -53,9 +55,10 @@ export const logoutUser = () => async dispatch => {
         'Authorization': 'Bearer ' + _token
       },
       responseType: 'json'
-    })
+    })*/
+    await api.serverLogout(_token)
 
-    await AsyncStorage.removeItem('TOKEN')
+    await api.removeLocalUser()
 
     dispatch({
       type: UNLOGGED_USER,
@@ -65,10 +68,11 @@ export const logoutUser = () => async dispatch => {
     console.log(e)
   }
 }
+
 export const checkUser = () => async dispatch => {
   try {
 
-    let _result = await AsyncStorage.getItem('TOKEN')
+    let _result = await api.checkLocalUser()
 
     if(_result !== null) {
       dispatch({

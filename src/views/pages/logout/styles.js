@@ -27,29 +27,26 @@ const styles = StyleSheet.create({
     position: 'relative',
     marginTop: '-50%'
   },
-  title: {
-    marginTop:'-5%'
-  },
-  subTitle: {
-    marginTop: 20
-  },
-  group: {
-    paddingTop: theme.SIZES.BASE * 2
+  profileCard: {
+    // position: "relative",
+    padding: theme.SIZES.BASE,
+    marginHorizontal: theme.SIZES.BASE,
+//    marginTop: 65,
+    borderTopLeftRadius: 6,
+    borderTopRightRadius: 6,
+    backgroundColor: theme.COLORS.WHITE,
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 8,
+    shadowOpacity: 0.2,
+    zIndex: 2
   },
   button: {
-    width: width - theme.SIZES.BASE * 6,
+    width: width - theme.SIZES.BASE * 8,
     height: theme.SIZES.BASE * 3,
     shadowRadius: 0,
     shadowOpacity: 0
   },
-  inputcontainer:{
-    paddingHorizontal: theme.SIZES.BASE
-  },
-  input: {
-    borderColor: Themes.COLORS.INFO,
-    borderRadius: 4,
-//    backgroundColor: "#fff"
-  }
 })
 
 export default styles

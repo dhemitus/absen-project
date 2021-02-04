@@ -1,7 +1,7 @@
 import React from 'react'
-import { ImageBackground, Image, Dimensions } from 'react-native'
+import { ImageBackground, Image, Dimensions, ScrollView,} from 'react-native'
 import { Block, Text} from 'galio-framework'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import styles from './styles'
 import { Themes } from '../../../constants'
@@ -20,6 +20,7 @@ export default (props) => {
       <Block flex center>
         <ImageBackground source={require('../../../../assets/img/background.jpg')} style={{ height, width, zIndex: 1 }} />
       </Block>
+
       <Block center>
         <Image source={require('../../../../assets/img/logo.png')} style={styles.logo} />
       </Block>
@@ -28,17 +29,17 @@ export default (props) => {
           <Block style={styles.title}>
             <Block>
               <Text color="white" size={60}>
-                Selamat
+                welcome
               </Text>
             </Block>
             <Block>
               <Text color="white" size={60}>
-                Datang
+                to
               </Text>
             </Block>
             <Block style={styles.subTitle}>
               <Text color="white" size={16}>
-                Di aplikasi absensi online kerjoo.
+                online attendance application system kerjoo.
               </Text>
             </Block>
           </Block>
