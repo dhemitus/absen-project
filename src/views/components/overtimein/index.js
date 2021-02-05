@@ -18,8 +18,8 @@ export default (props) => {
 
   return(
     <Block flex>
-    <Button disabled={false} small center color="warning" style={styles.button} onPress={() => dispatch(action.setAttendance(5, date))}>
-      {'OVERTIME IN ' + data}
+    <Button disabled={ data === null ? false : true } small center color={ data === null ? "warning" : "default" } style={styles.button} onPress={ () => data === null ? dispatch(action.setAttendance(5, date)) : {} }>
+      OVERTIME IN
     </Button>
   </Block>
   )

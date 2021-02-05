@@ -17,8 +17,8 @@ export default (props) => {
 
   return(
     <Block flex>
-    <Button disabled={ data === null ? false : true } small center color={ data === null ? "default" : "default" } style={styles.button} onPress={() => data === null ? dispatch(action.setAttendance(1, date)) : {}}>
-      { 'IN ' + data}
+    <Button disabled={ data === null ? false : true } small center color={ data === null ? "default" : "default" } style={styles.button} onPress={ () => data === null ? dispatch(action.setAttendance(1, date)) : {} }>
+      IN
     </Button>
   </Block>
   )

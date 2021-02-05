@@ -18,8 +18,8 @@ export default (props) => {
 
   return(
     <Block flex>
-    <Button disabled={false} small center color="primary" style={styles.button} onPress={() => dispatch(action.setAttendance(2, date))}>
-      {'OUT ' + data}
+    <Button disabled={ data === null ? false : true } small center color={ data === null ? "primary" : "default" } style={styles.button} onPress={ () => data === null ? dispatch(action.setAttendance(2, date)) : {} }>
+      OUT
     </Button>
   </Block>
   )
