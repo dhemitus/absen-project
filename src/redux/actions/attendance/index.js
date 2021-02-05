@@ -16,7 +16,7 @@ export const checkAttendance = (type) => async dispatch => {
   try {
     let _attendace = await api.checkLocalAttendance(type)
     let _array = JSON.parse(_attendace)
-    let _date = _array.find( r => r === moment().format("Y-m-d"))
+    let _date = _array.find( r => r === moment().format("Y-M-d"))
 
     console.log(_date)
     if(_date === undefined) {
@@ -52,17 +52,17 @@ export const setAttendance = (type, date) => async dispatch => {
     _onSuccess = async (pos) => {
       console.log(_token)
       console.log(_record === null ? 'kosong' : _record)
-      console.log(type, moment(date).format("Y-m-d"), moment(date).format("H:m:s"), pos.coords.longitude, pos.coords.latitude)
+      console.log(type, moment(date).format("Y-M-d"), moment(date).format("H:m:s"), pos.coords.longitude, pos.coords.latitude)
 
-      let _response = await api.addServerAttendance(type, moment(date).format("Y-m-d"), moment(date).format("H:m:s"), pos.coords.longitude+'', pos.coords.latitude+'', _token )
+      let _response = await api.addServerAttendance(type, moment(date).format("Y-M-d"), moment(date).format("H:m:s"), pos.coords.longitude+'', pos.coords.latitude+'', _token )
 
       console.log(_response.data)
 
       if(_record === null) {
-        _array = [moment(date).format("Y-m-d")]
+        _array = [moment(date).format("Y-M-d")]
       } else {
         _array = JSON.parse(_record)
-        _array.push(moment(date).format("Y-m-d"))
+        _array.push(moment(date).format("Y-M-d"))
       }
       _record = JSON.stringify(_array)
       let _result = await addLocalAttendance(type, _record)
