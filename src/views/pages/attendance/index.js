@@ -6,7 +6,6 @@ import moment from 'moment'
 
 import styles from './styles'
 import { Themes } from '../../../constants'
-import { Button, Input } from '../../ui'
 import { ActionCreators as action } from '../../../redux/actions'
 import { InButton, OutButton, BreakButton, AfterBreakButton, OverTimeInButton, OverTimeOutButton } from '../../components'
 
@@ -15,8 +14,6 @@ const idlocal = require('moment/locale/id')
 
 export default (props) => {
   const [date, setDate] = useState(new Date())
-  //  const { data } = useSelector((state) => state.userAuthentication)
-//  const dispatch = useDispatch()
 
   useEffect(() => {
     let _timer = setInterval(() => _tick(), 1000)

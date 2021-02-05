@@ -7,7 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Icon } from 'galio-framework'
 
 import { ActionCreators as action } from '../../../redux/actions'
-import { LOGGED_USER, STILLLOGGED_USER, UNLOGGED_USER } from '../../../redux/reducers/authentication/iauthentication'
+import { LOGGED_USER, STILLLOGGED_USER, UNLOGGED_USER, BEFORELOG_USER } from '../../../redux/reducers/authentication/iauthentication'
 import LoginPage from '../../pages/login'
 import LogoutPage from '../../pages/logout'
 import ArchivesPage from '../../pages/archives'
@@ -65,7 +65,7 @@ const DisplayPage = (type) => {
         />
       </Stack.Navigator>
     )
-  } else {
+  } else if(type === BEFORELOG_USER) {
     return (
       <LoadingPage />
     )

@@ -17,6 +17,7 @@ export default (props) => {
   useEffect(() => {
     dispatch(action.userProfile())
   }, [])
+
   return(
     <Block flex style={styles.container}>
       <Block flex center>

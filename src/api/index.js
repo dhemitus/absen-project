@@ -1,5 +1,7 @@
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import Geolocation from 'react-native-geolocation-service'
+import { PermissionsAndroid } from 'react-native'
 
 const BASE_URL = 'https://apitest.kerjoo.com/api/v1'
 
@@ -58,7 +60,7 @@ export const getServerUser = async (token) => {
   })
 }
 
-export const getServerAttendances = async (token) => {
+export const getServerAttendances = async (id, type_id, log_date, page, token) => {
   return await axios({
     method: 'get',
     url: BASE_URL + '/attendances',
@@ -66,6 +68,12 @@ export const getServerAttendances = async (token) => {
       Accept: 'application/json',
       'X-CSRF-TOKEN': 'Bearer ' + token,
       'Authorization': 'Bearer ' + token
+    },
+    params: {
+      id,
+      type_id,
+      log_date,
+      page
     },
     responseType: 'json'
   })
@@ -90,4 +98,85 @@ export const addServerAttendance = async (type_id, log_date, log_time, longitude
     },
     responseType: 'json'
   })
+}
+
+export const checkLocalAttendance = async (i) => {
+  let _key
+  switch (i) {
+    case 1:
+      _key = 'IN'
+      break
+    case 2:
+      _key = 'OUT'
+      break
+    case 3:
+      _key = 'BREAK'
+      break
+    case 4:
+      _key = 'AFTER_BREAK'
+      break
+    case 5:
+      _key = 'OVERTIME_IN'
+      break
+    case 6:
+      _key = 'OVERTIME_OUT'
+      break
+    default:
+      _key = 'IN'
+      break;
+  }
+
+  return await AsyncStorage.getItem(_key)
+}
+
+export const addLocalAttendance = async (i, record) => {
+  let _key
+  switch (i) {
+    case 1:
+      _key = 'IN'
+      break
+    case 2:
+      _key = 'OUT'
+      break
+    case 3:
+      _key = 'BREAK'
+      break
+    case 4:
+      _key = 'AFTER_BREAK'
+      break
+    case 5:
+      _key = 'OVERTIME_IN'
+      break
+    case 6:
+      _key = 'OVERTIME_OUT'
+      break
+    default:
+      _key = 'IN'
+      break;
+  }
+  return await AsyncStorage.setItem(_key, record)
+}
+
+export const getPosition = async (onSuccess, onError) => {
+  let _permission
+
+  _permission = await permission()
+
+  return Geolocation.getCurrentPosition(
+    onSuccess,
+    onError,
+    { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+  )
+}
+
+const permission = async () => {
+  let _permission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION)
+
+  if(_permission) return true
+
+  let _status = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION)
+
+  if(_status === PermissionsAndroid.RESULTS.GRANTED) return true
+
+  return false
 }
